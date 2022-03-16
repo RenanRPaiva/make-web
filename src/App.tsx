@@ -1,8 +1,13 @@
+import styled from "styled-components";
 
 function App() {
   return (
-   <h1>Make+</h1>
+   <H1Styled>Make+</H1Styled>
   );
 }
+
+const H1Styled = styled.p`
+  font-family: 'Nova Oval', cursive;
+`
 
 export default App;
