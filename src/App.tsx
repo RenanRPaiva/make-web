@@ -1,7 +1,7 @@
 
 function App() {
   return (
-   <p>Make+</p>
+   <h1>Make+</h1>
   );
 }
 
