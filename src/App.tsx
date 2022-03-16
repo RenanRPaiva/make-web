@@ -1,13 +1,10 @@
-import styled from "styled-components";
+import HomeView from "./views/Home";
 
 function App() {
   return (
-   <H1Styled>Make+</H1Styled>
+   <HomeView />
   );
 }
 
-const H1Styled = styled.p`
-  font-family: 'Nova Oval', cursive;
-`
 
 export default App;
