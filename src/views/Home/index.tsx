@@ -10,7 +10,7 @@ export default function HomeView() {
     return (
         <Layout>
             <Banner className="vh-100">
-                <Container className="h-100 d-flex flex-column justify-content-center align-items-center">
+                <Container className="h-100 d-flex flex-column justify-content-center align-items-center align-items-lg-start">
                     <Title className="text-white text-center text-lg-start mt-auto">Maquiagem e Penteado em um Click!</Title>
                     <Button variant="danger" className="mb-2 mt-auto">Criar conta</Button>
                     <Button variant="danger" className="mb-4">Fazer login</Button>
