@@ -36,8 +36,8 @@ export default function Header() {
                 <NavbarCollapseStyled id='menu-header'>
                     <Nav className="text-center align-items-center ms-auto">
                         <NavLinkStyled href="/" $isTransparent={isTransparent}>Início</NavLinkStyled>
-                        <Button href="/cadastro" className="mt-2 mt-lg-0 ms-lg-4">Criar conta</Button>
-                        <Button href="/login" className="mt-2 mt-lg-0 ms-lg-4">Fazer login</Button>
+                        <Button variant="danger" href="/cadastro" className="mt-2 mt-lg-0 ms-lg-4">Criar conta</Button>
+                        <Button variant="danger" href="/login" className="mt-2 mt-lg-0 ms-lg-4">Fazer login</Button>
                     </Nav>
                 </NavbarCollapseStyled>
             </Container>
