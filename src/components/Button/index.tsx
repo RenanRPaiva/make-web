@@ -1,8 +1,21 @@
 import { Button as ButtonBootstrap, ButtonProps } from "react-bootstrap"
+import { LinkContainer } from 'react-router-bootstrap'
 import styled from "styled-components"
 
-export default function Button (props: ButtonProps) {
-    return <ButtonStyled {...props} />
+type Props = {
+    to?: string
+} & ButtonProps
+
+export default function Button({ to, ...otherProps }: Props) {
+    const button = <ButtonStyled {...otherProps} />
+    if (to) {
+        return (
+            <LinkContainer to={to}>
+                {button}
+            </LinkContainer>
+        )
+    }
+    return button
 }
 
 const ButtonStyled = styled(ButtonBootstrap)`
