@@ -5,16 +5,17 @@ import Header from "./Header"
 
 type Props = {
     startTransparent?: boolean
+    withoutMargin?: boolean
 }
 
-const Layout: React.FC<Props> = ({ children, startTransparent }) => {
+const Layout: React.FC<Props> = ({ children, startTransparent, withoutMargin }) => {
     return (
         <>
             <Header startTransparent={startTransparent} />
             <MainStyled startTransparent={startTransparent}>
                 {children}
             </MainStyled>
-            <Footer />
+            <Footer withoutMargin={withoutMargin} />
         </>
     )
 }

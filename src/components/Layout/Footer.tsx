@@ -5,10 +5,14 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 import LogoWhiteNis from "../../assets/img/logo-white-full.svg"
 
-export default function Footer() {
+type Props = {
+    withoutMargin?: boolean
+}
+
+export default function Footer({ withoutMargin = false }: Props) {
     const TypeWhatsapp = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ? 'api' : 'web'
     return (
-        <FooterStyled className="text-center pt-4 pb-5 py-lg-3">
+        <FooterStyled className={`text-center pt-4 pb-5 py-lg-3 ${withoutMargin ? '' : 'mt-5'} `}>
             <Container className="d-lg-flex align-items-center">
                 <p className="text-white">Oferecidor por:</p>
                 <img src={LogoWhiteNis} alt='Nislaine Duarte - Beauty professional' width={177} height={88} />
