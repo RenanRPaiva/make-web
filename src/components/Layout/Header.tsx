@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 type Props = {
     startTransparent?: boolean
@@ -32,7 +33,7 @@ export default function Header({ startTransparent = false }: Props) {
     return (
         <NavbarStyled fixed='top' expand='lg' bg={isTransparent ? '' : 'white'}>
             <Container>
-                <NavBrandStyled className="text-white d-flex align-items-center" href='/'>
+                <NavBrandStyled className="text-white d-flex align-items-center" to='/' as={Link}>
                     <LogoStyled src={isTransparent ? LogoWhite : Logo} alt="Make+" className="m-2" width={53} height={53} />
                     <PStyled className={isTransparent ? "text-white" : ''}>Make+</PStyled>
                 </NavBrandStyled>
@@ -41,7 +42,7 @@ export default function Header({ startTransparent = false }: Props) {
                 </Navbar.Toggle>
                 <NavbarCollapseStyled id='menu-header'>
                     <Nav className="text-center align-items-center ms-auto">
-                        <NavLinkStyled href="/" $isTransparent={isTransparent}>Início</NavLinkStyled>
+                        <NavLinkStyled forwardedAs={Link} to="/" $isTransparent={isTransparent}>Início</NavLinkStyled>
                         <Button variant="danger" href="/cadastro" className="mt-2 mt-lg-0 ms-lg-4">Criar conta</Button>
                         <Button variant="danger" href="/login" className="mt-2 mt-lg-0 ms-lg-4">Fazer login</Button>
                     </Nav>

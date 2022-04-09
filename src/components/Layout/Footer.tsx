@@ -1,6 +1,7 @@
 import { faFacebookSquare, faInstagram, faWhatsappSquare } from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Container, Nav } from "react-bootstrap"
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 import LogoWhiteNis from "../../assets/img/logo-white-full.svg"
 
@@ -12,9 +13,9 @@ export default function Footer() {
                 <p className="text-white">Oferecidor por:</p>
                 <img src={LogoWhiteNis} alt='Nislaine Duarte - Beauty professional' width={177} height={88} />
                 <Nav className="justify-content-center my-4 my-lg-0 ms-auto">
-                    <Nav.Link href="/" className="text-white">Início</Nav.Link>
-                    <Nav.Link href="/cadastro" className="text-white">Cadastro</Nav.Link>
-                    <Nav.Link href="/login" className="text-white">Login</Nav.Link>
+                    <Nav.Link as={Link} to="/" className="text-white">Início</Nav.Link>
+                    <Nav.Link as={Link} to="/cadastro" className="text-white">Cadastro</Nav.Link>
+                    <Nav.Link as={Link} to="/login" className="text-white">Login</Nav.Link>
                     <Nav.Link href="/termos-de-uso.pdf" target='_blank' className="text-white">Termos de Uso</Nav.Link>
                 </Nav>
                 <Nav className="justify-content-center">
