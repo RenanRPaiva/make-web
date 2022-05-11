@@ -6,12 +6,12 @@ import FormField from "../../components/FormField"
 import Layout from "../../components/Layout"
 import PageTitle from "../../components/PageTitle"
 import * as yup from 'yup'
+import { NewUserInput, createUser } from "../../services/createUser"
+import { FirebaseError } from "firebase/app"
+import { AuthErrorCodes } from "firebase/auth"
+import { toast } from "react-toastify"
 
-type FormValues = {
-    name: string
-    email: string
-    phone: string
-    password: string
+type FormValues = NewUserInput & {
     agree: boolean
 }
 
@@ -40,8 +40,16 @@ export default function RegisterView() {
             agree: yup.boolean()
                 .equals([true], 'É preciso aceitar os termos.')
         }),
-        onSubmit: (values) => {
-            console.log(values)
+        onSubmit: async (values) => {
+            try {
+                await createUser(values)
+            } catch (error) {
+                if (error instanceof FirebaseError && error.code === AuthErrorCodes.EMAIL_EXISTS) {
+                    formik.setFieldError('email', 'Este e-mail já está em uso.')
+                    return
+                }
+                toast.error('Ocorreu um erro ao se cadastrar. Tente novamente.')
+            }
         }
     })
     const getFieldProps = (fieldName: keyof FormValues, label: string, placeholder: string) => ({
@@ -84,11 +92,11 @@ export default function RegisterView() {
                                     label={<span>Eu li e aceito os <a href='/termos-de-uso.pdf' target='_blank'>Termos de Uso</a>.</span>}
                                 />
                                 <Form.Control.Feedback type='invalid' className={formik.touched.agree && formik.errors.agree ? 'd-block' : undefined}>
-                                   {formik.errors.agree}
+                                    {formik.errors.agree}
                                 </Form.Control.Feedback>
                             </Form.Group>
                             <div className="d-grid mb-4">
-                                <Button type="submit" variant="danger">Criar conta</Button>
+                                <Button loading={formik.isValidating || formik.isSubmitting} disabled={formik.isValidating || formik.isSubmitting} type="submit" variant="danger">Criar conta</Button>
                             </div>
                         </Form>
                         <p className="text-center">Já possui conta?<br /><Link to='/login'>Entrar</Link></p>
