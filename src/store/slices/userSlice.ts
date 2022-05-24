@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../../entities/User";
+import { RootState } from "../store";
 
 type UserState = User | null
 
@@ -16,3 +17,5 @@ const slice = createSlice({
 export const { updateUser } = slice.actions
 
 export default slice.reducer
+
+export const selectIsUserLoggedIn = (state: RootState) => !!state.user
