@@ -1,20 +1,31 @@
 import { Container } from "react-bootstrap"
+import { useSelector } from "react-redux"
 import styled from "styled-components"
 import bgMobile from "../../assets/img/bg-make+-mobile.jpg"
 import bgDescktop from "../../assets/img/bg-make+.jpg"
 import Button from "../../components/Button"
 import Layout from "../../components/Layout"
+import { selectIsUserLoggedIn } from "../../store/slices/userSlice"
 
 
 export default function HomeView() {
+    const isUserLoggedIn = useSelector(selectIsUserLoggedIn)
     return (
         <Layout startTransparent withoutMargin>
             <Banner className="vh-100">
                 <Container className="h-100 d-flex flex-column justify-content-center align-items-center align-items-lg-start">
-                    <Title className="text-white text-center text-lg-start mt-auto">Maquiagem e Penteado em um Click!</Title>
-                    <Button  to="/cadastro" variant="danger" className="mb-2 mt-auto">Criar conta</Button>
-                    <Button  to="/login" variant="danger" className="mb-4">Fazer login</Button>
-
+                    <Title className="text-white text-center text-lg-start mt-auto mt-lg-0">Maquiagem e Penteado em um Click!</Title>
+                    {isUserLoggedIn ? (
+                        <>
+                            <Button to="/novo-pedido" variant="danger" size='lg' className="mb-2 mt-auto mt-lg-3">Novo Pedido</Button>
+                            <Button to="/meus-pedidos" variant="danger" size='lg' className="mb-2 mt-auto mt-lg-3">Meus Pedidos</Button>
+                        </>
+                    ) : (
+                        <>
+                            <Button to="/cadastro" variant="danger" size='lg' className="mb-2 mt-auto  mt-lg-3">Criar conta</Button>
+                            <Button to="/login" variant="danger" size='lg' className="mb-4">Fazer login</Button>
+                        </>
+                    )}
                 </Container>
             </Banner>
         </Layout>

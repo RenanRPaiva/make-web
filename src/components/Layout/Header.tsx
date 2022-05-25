@@ -6,13 +6,20 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { deleteUser, selectIsUserLoggedIn } from "../../store/slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "../../services/logoutUser";
+import { toast } from "react-toastify";
 
 type Props = {
     startTransparent?: boolean
 }
 
 export default function Header({ startTransparent = false }: Props) {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const isUserLoggedIn = useSelector(selectIsUserLoggedIn)
     const [isTransparent, setIsTransparent] = useState(startTransparent)
     useEffect(() => {
         const handleScrollChange = () => {
@@ -30,6 +37,15 @@ export default function Header({ startTransparent = false }: Props) {
             return clearEvent
         }
     }, [startTransparent])
+    const handleLogout = async () => {
+        try {
+            await logoutUser()
+            dispatch(deleteUser())
+            navigate('/login')
+        } catch {
+            toast.error('Falha ao sair. Tente novamente.')
+        }
+    }
     return (
         <NavbarStyled fixed='top' expand='lg' bg={isTransparent ? '' : 'white'}>
             <Container>
@@ -43,8 +59,18 @@ export default function Header({ startTransparent = false }: Props) {
                 <NavbarCollapseStyled id='menu-header'>
                     <Nav className="text-center align-items-center ms-auto">
                         <NavLinkStyled forwardedAs={Link} to="/" $isTransparent={isTransparent}>Início</NavLinkStyled>
-                        <Button to="/cadastro" variant="danger" className="mt-2 mt-lg-0 ms-lg-4">Criar conta</Button>
-                        <Button to="/login" variant="danger"  className="mt-2 mt-lg-0 ms-lg-4">Fazer login</Button>
+                        {isUserLoggedIn ? (
+                            <>
+                                <Button to="/novo-pedido" variant="danger" className="mt-2 mt-lg-0 ms-lg-4">Novo Pedido</Button>
+                                <Button to="/meus-pedidos" variant="danger" className="mt-2 mt-lg-0 ms-lg-4">Meus Pedidos</Button>
+                                <Button onClick={handleLogout} variant="danger" className="mt-2 mt-lg-0 ms-lg-4">Sair</Button>
+                            </>
+                        ) : (
+                            <>
+                                <Button to="/cadastro" variant="danger" className="mt-2 mt-lg-0 ms-lg-4">Criar conta</Button>
+                                <Button to="/login" variant="danger" className="mt-2 mt-lg-0 ms-lg-4">Fazer login</Button>
+                            </>
+                        )}
                     </Nav>
                 </NavbarCollapseStyled>
             </Container>
