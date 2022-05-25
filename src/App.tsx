@@ -4,7 +4,7 @@ import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "./services/firebase";
 import { getUser } from "./services/getUser";
 import { useDispatch } from "react-redux";
-import { updateUser } from "./store/slices/userSlice";
+import { deleteUser, updateUser } from "./store/slices/userSlice";
 
 function App() {
   const dispatch = useDispatch()
@@ -13,6 +13,8 @@ function App() {
       if (currentUser) {
         const user = await getUser(currentUser.uid)
         dispatch(updateUser(user))
+      } else {
+        dispatch(deleteUser())
       }
     })
   }, [dispatch])
