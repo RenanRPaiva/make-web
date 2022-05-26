@@ -4,11 +4,18 @@ import HomeView from './views/Home'
 import { NotFoundView } from './views/NotFound'
 import RegisterView from './views/Register'
 
-export default function Routes () {
+export default function Routes() {
     return (
         <RoutesRD>
             <Route path='/' element={<HomeView />} />
-            <Route path='/cadastro' element={ <PublicOnlyRoute> <RegisterView /> </PublicOnlyRoute>} />
+            <Route
+                path='/cadastro'
+                element={
+                    <PublicOnlyRoute>
+                        <RegisterView />
+                    </PublicOnlyRoute>
+                }
+            />
             <Route path='*' element={<NotFoundView />} />
         </RoutesRD>
     )

@@ -3,11 +3,11 @@ import { Navigate } from "react-router-dom";
 import { selectIsLoadingUser, selectIsUserLoggedIn } from "../../store/slices/userSlice";
 import Loading from "../Loading";
 
-// type Props = {
-//     children: React.ReactElement;
-// }
+type Props = {
+    children: React.ReactElement;
+}
 
-export default function PublicOnlyRoute( {children} : any) {
+export default function PublicOnlyRoute( {children} : Props) {
     const isUserLogedIn = useSelector(selectIsUserLoggedIn)
     const isLoadingUser = useSelector(selectIsLoadingUser)
     if (isLoadingUser) {
