@@ -12,6 +12,7 @@ import { AuthErrorCodes } from "firebase/auth"
 import { toast } from "react-toastify"
 import { updateUser } from "../../store/slices/userSlice"
 import { useDispatch } from "react-redux"
+import { getFieldProps } from "../../utils/getFieldProps"
 
 type FormValues = NewUserInput & {
     agree: boolean
@@ -59,14 +60,6 @@ export default function RegisterView() {
             }
         }
     })
-    const getFieldProps = (fieldName: keyof FormValues, label: string, placeholder: string) => ({
-        ...formik.getFieldProps(fieldName),
-        controlId: `input-${fieldName}`,
-        label,
-        placeholder,
-        isInvalid: formik.touched[fieldName] && !!formik.errors[fieldName],
-        error: formik.errors[fieldName]
-    })
     return (
         <Layout>
             <Container>
@@ -75,13 +68,13 @@ export default function RegisterView() {
                         <PageTitle>Nova conta</PageTitle>
                         <Form onSubmit={formik.handleSubmit}>
                             <FormField
-                                {...getFieldProps('name', 'Nome', 'Informe seu nome')}
+                                {...getFieldProps<FormValues>(formik, 'name', 'Nome', 'Informe seu nome')}
                             />
                             <FormField
-                                {...getFieldProps('email', 'E-mail', 'Ele será o seu usuário')}
+                                {...getFieldProps<FormValues>(formik, 'email', 'E-mail', 'Ele será o seu usuário')}
                             />
                             <FormField
-                                {...getFieldProps('phone', 'Telefone', '(00) 00000-0000')}
+                                {...getFieldProps<FormValues>(formik, 'phone', 'Telefone', '(00) 00000-0000')}
                                 mask={[
                                     { mask: '(00) 0000-0000' },
                                     { mask: '(00) 00000-0000' }
@@ -89,7 +82,7 @@ export default function RegisterView() {
                                 onAccept={(value) => formik.setFieldValue('phone', value)}
                             />
                             <FormField
-                                {...getFieldProps('password', 'Senha', 'Informe sua senha de acesso')}
+                                {...getFieldProps<FormValues>(formik, 'password', 'Senha', 'Informe sua senha de acesso')}
                                 type="password"
                             />
                             <Form.Group className="mb-3" controlId="input-agree">
