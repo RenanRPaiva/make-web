@@ -1,7 +1,7 @@
 import { Col, Container, Row } from "react-bootstrap";
-import Button from "../../components/Button";
 import Layout from "../../components/Layout";
 import PageTitle from "../../components/PageTitle";
+import EstimateDatails from "./EstimateDetails";
 import EstimateForm from "./EstimateForm";
 import ServicesForm from "./servicesForm";
 
@@ -12,17 +12,16 @@ export default function NewOrderView() {
             <Container>
                 <PageTitle>Novo Pedido</PageTitle>
                 <Row>
-                    <Col xs={12}>
+                    <Col xs={12} md={12}>
                         <ServicesForm />                        
                     </Col>
-                    <Col xs={12}>
+                    <Col xs={12} md={6} lg={7}>
                         <EstimateForm />
                     </Col>
-                    <Col xs={12}>
-                        Detalhes
+                    <Col xs={12} md={6} lg={5}>
+                       <EstimateDatails />
                     </Col>
-                </Row>
-                <Button type='submit' >Calcular Preço (+ Taxa de Atendimento)</Button>
+                </Row>                
             </Container>
         </Layout>
     )

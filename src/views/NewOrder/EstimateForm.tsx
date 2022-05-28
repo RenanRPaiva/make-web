@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import { Form } from "react-bootstrap";
+import Button from "../../components/Button";
 import FormField from "../../components/FormField";
 import { Address } from "../../entities/Address";
 import { getFieldProps } from "../../utils/getFieldProps";
@@ -56,7 +57,10 @@ export default function EstimateForm() {
                     {...getFieldProps(formik, 'hours', 'Hora: ', 'Informe a hora.')
                     }
                 />
-            </div>           
+            </div>
+            <div className="d-grid">
+            <Button type='submit'>Calcular Preço (+ Taxa de Atendimento)</Button>
+            </div>
         </Form>
     )
 }
