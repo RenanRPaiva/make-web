@@ -39,7 +39,7 @@ export default function EstimateForm() {
                     label={<span>Ir até a Maquiadora</span>}
                 />
                 <Form.Control.Feedback type='invalid' className={formik.touched.agree && formik.errors.agree ? 'd-block' : undefined}>
-                    {formik.errors.agree}
+                    {formik.errors.agree} 
                 </Form.Control.Feedback>
             </Form.Group>
             <FormField

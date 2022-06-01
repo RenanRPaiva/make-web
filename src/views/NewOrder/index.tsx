@@ -12,10 +12,10 @@ export default function NewOrderView() {
             <Container>
                 <PageTitle>Novo Pedido</PageTitle>
                 <Row>
-                    <Col xs={12} md={12}>
+                    <Col xs={12} md={12} lg={3}>
                         <ServicesForm />                        
                     </Col>
-                    <Col xs={12} md={6} lg={7}>
+                    <Col xs={12} md={6} lg={4}>
                         <EstimateForm />
                     </Col>
                     <Col xs={12} md={6} lg={5}>
