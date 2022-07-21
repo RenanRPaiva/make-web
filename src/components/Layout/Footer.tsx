@@ -23,8 +23,7 @@ export default function Footer({ withoutMargin = false }: Props) {
                     <Nav.Link as={Link} to="/" className="text-white">Início</Nav.Link>
                     {isUserLoggedIn ? (
                         <>
-                            <Nav.Link as={Link} to="/novo-pedido" className="text-white">Novo Pedido</Nav.Link>
-                            <Nav.Link as={Link} to="/meus-pedidos" className="text-white">Meus Pedidos</Nav.Link>
+                            <Nav.Link as={Link} to="/novo-pedido" className="text-white">Novo Pedido</Nav.Link>                           
                         </>
                     ) : (
                         <>

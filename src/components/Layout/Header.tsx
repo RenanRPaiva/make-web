@@ -61,8 +61,7 @@ export default function Header({ startTransparent = false }: Props) {
                         <NavLinkStyled forwardedAs={Link} to="/" $isTransparent={isTransparent}>Início</NavLinkStyled>
                         {isUserLoggedIn ? (
                             <>
-                                <Button to="/novo-pedido" variant="danger" className="mt-2 mt-lg-0 ms-lg-4">Novo Pedido</Button>
-                                <Button to="/meus-pedidos" variant="danger" className="mt-2 mt-lg-0 ms-lg-4">Meus Pedidos</Button>
+                                <Button to="/novo-pedido" variant="danger" className="mt-2 mt-lg-0 ms-lg-4">Novo Pedido</Button>                              
                                 <Button onClick={handleLogout} variant="danger" className="mt-2 mt-lg-0 ms-lg-4">Sair</Button>
                             </>
                         ) : (
