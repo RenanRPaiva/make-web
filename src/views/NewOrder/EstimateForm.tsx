@@ -39,7 +39,7 @@ export default function EstimateForm() {
                     label={<span>Ir até a Maquiadora</span>}
                 />
                 <Form.Control.Feedback type='invalid' className={formik.touched.agree && formik.errors.agree ? 'd-block' : undefined}>
-                    {formik.errors.agree} 
+                    {formik.errors.agree}
                 </Form.Control.Feedback>
             </Form.Group>
             <FormField
@@ -59,7 +59,13 @@ export default function EstimateForm() {
                 />
             </div>
             <div className="d-grid">
-            <Button type='submit'>Calcular Preço (+ Taxa de Atendimento)</Button>
+                <Button
+                    type='submit'
+                    loading={formik.isValidating || formik.isSubmitting}
+                    disabled={formik.isValidating || formik.isSubmitting}
+                >
+                    Calcular Preço (+ Taxa de Atendimento)
+                </Button>
             </div>
         </Form>
     )
