@@ -13,6 +13,7 @@ type FormValues = {
     atendimento: number
 }
 
+
 export default function ServicesForm() {
     const formik = useFormik<FormValues>({
         initialValues: {
@@ -92,11 +93,10 @@ export default function ServicesForm() {
                             }
                         />
                     </Col>                   
-                </Form>
+                </Form>            
             </Row>
         </>
     )
-
 }
 
 const H5Styled = styled.h5`

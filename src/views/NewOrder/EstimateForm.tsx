@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import { Form } from "react-bootstrap";
+import AutocompleteField from "../../components/AutocompleteField";
 import Button from "../../components/Button";
 import FormField from "../../components/FormField";
 import { Address } from "../../entities/Address";
@@ -28,7 +29,7 @@ export default function EstimateForm() {
     })
     return (
         <Form onSubmit={formik.handleSubmit}>
-            <FormField
+            <AutocompleteField
                 {...getFieldProps(formik, 'customerAddress', 'Aonde será feito o serviço?', 'Informe o endereço completo.')
                 }
             />
