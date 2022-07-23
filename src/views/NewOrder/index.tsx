@@ -3,7 +3,7 @@ import Layout from "../../components/Layout";
 import PageTitle from "../../components/PageTitle";
 import EstimateDatails from "./EstimateDetails";
 import EstimateForm from "./EstimateForm";
-import ServicesForm from "./servicesForm";
+
 
 
 export default function NewOrderView() {
@@ -12,16 +12,13 @@ export default function NewOrderView() {
             <Container>
                 <PageTitle>Novo Pedido</PageTitle>
                 <Row>
-                    <Col xs={12} md={12} lg={3}>
-                        <ServicesForm />                        
-                    </Col>
-                    <Col xs={12} md={6} lg={4}>
+                    <Col xs={12} md={7} lg={7}>
                         <EstimateForm />
                     </Col>
-                    <Col xs={12} md={6} lg={5}>
-                       <EstimateDatails />
+                    <Col xs={12} md={5} lg={5}>
+                        <EstimateDatails />
                     </Col>
-                </Row>                
+                </Row>
             </Container>
         </Layout>
     )
