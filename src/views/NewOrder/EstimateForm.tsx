@@ -36,7 +36,7 @@ export default function EstimateForm() {
             pacoteNoiva: undefined,
             atendimento: undefined
         },
-        onSubmit: (values) => {
+        onSubmit: async (values) => {
             console.log(values)
         }
     })
@@ -113,6 +113,7 @@ export default function EstimateForm() {
                         <AutocompleteField
                             {...getFieldProps(formik, 'customerAddress', 'Aonde será feito o serviço?', 'Informe o endereço completo.')
                             }
+                            onChange={address => formik.setFieldValue('customerAddress', address) }
                         />
                         <Form.Group className="mb-3" controlId="input-agree">
                             <Form.Check
