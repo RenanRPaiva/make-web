@@ -6,11 +6,17 @@ import LoadGoogleScript from "../LoadGoogleScript";
 
 type Props = {
     value: null | Address
-    onChange:(address?: Address) => void
+    onChange: (address?: null | Address) => void
 } & Omit<FormFieldProps, 'value' | 'onChange'>
 
-export default function AutocompleteField ({ value, onChange, ...fieldProps }: Props) {
+export default function AutocompleteField({ value, onChange, ...fieldProps }: Props) {
     const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null)
+    const handleLoad = (autocomplete: google.maps.places.Autocomplete) => {
+        autocompleteRef.current = autocomplete
+        autocomplete.setBounds(new google.maps.LatLngBounds(
+            new google.maps.LatLng(-23.06971745565688, -43.867407141829254),
+            new google.maps.LatLng(-22.631585230211787, -43.12519091670126)))
+    }
     const handleChange = () => {
         const place = autocompleteRef.current?.getPlace()
         if (place && place.formatted_address && place.geometry?.location) {
@@ -25,17 +31,16 @@ export default function AutocompleteField ({ value, onChange, ...fieldProps }: P
     return (
         <LoadGoogleScript>
             <Autocomplete
-            onLoad={autocomplete => autocompleteRef.current = autocomplete}
-            onPlaceChanged={handleChange}
-            restrictions={{
-                country: 'br'                         
-            }}
-            bounds={typeof google !== 'undefined' ? new google.maps.LatLngBounds(
-                new google.maps.LatLng(-23.06971745565688, -43.867407141829254),
-                new google.maps.LatLng(-22.631585230211787, -43.12519091670126)        
-            ) : undefined}
+                onLoad={handleLoad}
+                onPlaceChanged={handleChange}
+                restrictions={{
+                    country: 'br'
+                }}
+                options={{
+                    strictBounds: true
+                }}                
             >
-                <FormField {...fieldProps}/>
+                <FormField {...fieldProps} onChange={() => onChange(null)} />
             </Autocomplete>
         </LoadGoogleScript>
     )
