@@ -6,44 +6,68 @@ import Button from "../../components/Button";
 import FormField from "../../components/FormField";
 import { Address } from "../../entities/Address";
 import { getFieldProps } from "../../utils/getFieldProps";
+import * as yup from 'yup'
+import { createEstimate, NewEstimateInput } from "../../services/createEstimate";
+// import { toast } from "react-toastify";
 
 type FormValues = {
     customerAddress: Address | null
-    coments: string
-    agree: boolean
+    coments: string   
     date: string
     hours: string
-    maquiagem: number | undefined
-    penteado: number | undefined
-    pacoteMc: number | undefined
-    pacoteMp: number | undefined
-    pacoteNoiva: number | undefined
-    atendimento: number | undefined
+    maquiagem: number 
+    penteado: number 
+    pacoteMc: number 
+    pacoteMp: number 
+    pacoteNoiva: number 
+    atendimento: number 
 }
 
 export default function EstimateForm() {
     const formik = useFormik<FormValues>({
         initialValues: {
-            customerAddress: null,
-            agree: false,
+            customerAddress: null,            
             coments: '',
             date: '',
             hours: '',
-            maquiagem: undefined,
-            penteado:undefined,
-            pacoteMc: undefined,
-            pacoteMp: undefined,
-            pacoteNoiva: undefined,
-            atendimento: undefined
+            maquiagem:0,
+            penteado: 0,
+            pacoteMc: 0,
+            pacoteMp: 0,
+            pacoteNoiva: 0,
+            atendimento: 0
         },
+        validationSchema: yup.object().shape({
+            customerAddress: yup.object()
+                .typeError('Selecione um endereço na lista.')
+                .required('Selecione um endereço na lista.'),
+            coments: yup.string()               
+                .required('Escreva ponto de referencia.'),
+            date: yup.date()               
+                .required('Informe a data.'),
+            hours: yup.string()        
+                .required('Informe a hora.'),
+            
+
+                
+        }),        
         onSubmit: async (values) => {
-            console.log(values)
+           const estimate = await createEstimate(values as NewEstimateInput) 
+           console.log('estimate', estimate)  
+
+        //    if (formik.values.maquiagem === 0|| formik.values.atendimento === 0|| formik.values.pacoteMc === 0 || formik.values.pacoteMp === 0 || formik.values.pacoteNoiva === 0|| formik.values.penteado === 0) 
+        //    {
+        //     // toast.error('Tem que haver pelo menos 1 serviço selecionado. Tente novamente.')
+        //     throw new Error('Tem que haver pelo menos 1 serviço selecionado. Tente novamente.')           
+        //    }
+                    
         }
     })
+    
     return (
         <>
             <Form onSubmit={formik.handleSubmit}>
-            <H5Styled>Quais Serviços?</H5Styled>
+                <H5Styled>Quais Serviços?</H5Styled>
                 <Row>
                     <Col xs={12} md={12} lg={6}>
                         <Row>
@@ -113,18 +137,8 @@ export default function EstimateForm() {
                         <AutocompleteField
                             {...getFieldProps(formik, 'customerAddress', 'Aonde será feito o serviço?', 'Informe o endereço completo.')
                             }
-                            onChange={address => formik.setFieldValue('customerAddress', address) }
-                        />
-                        <Form.Group className="mb-3" controlId="input-agree">
-                            <Form.Check
-                                {...formik.getFieldProps('agree')}
-                                type="checkbox"
-                                label={<span>Ir até a Maquiadora</span>}
-                            />
-                            <Form.Control.Feedback type='invalid' className={formik.touched.agree && formik.errors.agree ? 'd-block' : undefined}>
-                                {formik.errors.agree}
-                            </Form.Control.Feedback>
-                        </Form.Group>
+                            onChange={address => formik.setFieldValue('customerAddress', address)}
+                        />                       
                         <FormField
                             {...getFieldProps(formik, 'coments', 'Ponto de Referencia', 'Detalhes para chegar')
                             }
@@ -145,7 +159,7 @@ export default function EstimateForm() {
                             <Button
                                 type='submit'
                                 loading={formik.isValidating || formik.isSubmitting}
-                                disabled={formik.isValidating || formik.isSubmitting}
+                                disabled={formik.isValidating || formik.isSubmitting}                                
                             >
                                 Calcular Preço (+ Taxa de Atendimento)
                             </Button>
