@@ -190,6 +190,7 @@ export default function EstimateForm() {
                         variant="outline-danger"
                         type="button"
                         onClick={handleChangeAddress}
+                        className='mb-3 mb-md-0'
                     >Alterar Pedido</Button>
                 </div>
             )}

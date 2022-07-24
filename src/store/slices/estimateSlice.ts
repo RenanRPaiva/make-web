@@ -26,3 +26,4 @@ export const { setCurrentEstimate, clearCurrentEstimate } = slice.actions
 export default slice.reducer
 
 export const selectCurrentEstimate = (state: RootState) => state.estimate.currentEstimate
+export const selectHasCurrentEstimate = (state: RootState)=> !!state.estimate.currentEstimate
