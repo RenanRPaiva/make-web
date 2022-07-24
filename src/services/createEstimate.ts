@@ -66,6 +66,6 @@ const getValue = (meters: number, minutes: number, maquiagem: number, penteado: 
     if (value < min) {
         return min
     }
-    return value
+    return parseFloat(value.toFixed(2))
 }
 
