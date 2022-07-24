@@ -3,6 +3,8 @@ import { Address } from "./Address"
 export type Estimate = {
     id: string
     minutes: number
+    date?:string
+    hours?:string
     meters: number
     value: number
     customerAddress: Address

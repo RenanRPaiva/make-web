@@ -39,7 +39,9 @@ export const createEstimate = async ({ customerAddress, coments, date, hours, ma
         pacoteMc,
         pacoteMp,
         pacoteNoiva,
-        atendimento
+        atendimento,
+        date,
+        hours
     }
     const res = await addDoc(collection(db, "estimates"), estimateData)
     return {
@@ -59,6 +61,7 @@ const getValue = (meters: number, minutes: number, maquiagem: number, penteado: 
     value += pacoteMp * 180
     value += pacoteNoiva * 400
     value += atendimento * 200
+    
     const min = 4.5
     if (value < min) {
         return min
