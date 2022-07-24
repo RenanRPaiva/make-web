@@ -8,6 +8,7 @@ import { Address } from "../../entities/Address";
 import { getFieldProps } from "../../utils/getFieldProps";
 import * as yup from 'yup'
 import { createEstimate, NewEstimateInput } from "../../services/createEstimate";
+import { toast } from "react-toastify";
 // import { toast } from "react-toastify";
 
 type FormValues = {
@@ -53,13 +54,13 @@ export default function EstimateForm() {
         }),        
         onSubmit: async (values) => {
            const estimate = await createEstimate(values as NewEstimateInput) 
-           console.log('estimate', estimate)  
-
-        //    if (formik.values.maquiagem === 0|| formik.values.atendimento === 0|| formik.values.pacoteMc === 0 || formik.values.pacoteMp === 0 || formik.values.pacoteNoiva === 0|| formik.values.penteado === 0) 
-        //    {
-        //     // toast.error('Tem que haver pelo menos 1 serviço selecionado. Tente novamente.')
-        //     throw new Error('Tem que haver pelo menos 1 serviço selecionado. Tente novamente.')           
-        //    }
+            
+           if (formik.values.maquiagem === 0 && formik.values.atendimento === 0 && formik.values.pacoteMc === 0 &&  formik.values.pacoteMp === 0 && formik.values.pacoteNoiva === 0 &&  formik.values.penteado === 0) 
+           {
+            toast.error('Tem que haver pelo menos 1 serviço selecionado. Tente novamente.')
+            throw new Error('Tem que haver pelo menos 1 serviço selecionado. Tente novamente.')           
+           }
+           console.log('estimate', estimate) 
                     
         }
     })
