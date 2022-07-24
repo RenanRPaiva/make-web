@@ -1,7 +1,7 @@
 import { Form, FormControlProps } from "react-bootstrap";
 import { IMaskInput } from "react-imask";
 
-type Props = {
+export type FormFieldProps = {
     label?: string
     controlId?: string
     error?: string
@@ -9,7 +9,7 @@ type Props = {
     onAccept?: (value: unknown) => void
 } & FormControlProps
 
-export default function FormField ({ label, controlId, error, mask, onAccept, ...otherProps }:Props) {
+export default function FormField ({ label, controlId, error, mask, onAccept, ...otherProps }:FormFieldProps) {
     return (
         <Form.Group className="mb-3" controlId={controlId}>
             {label && <Form.Label className="mb-1">{label}</Form.Label>}

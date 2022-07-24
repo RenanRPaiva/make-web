@@ -6,7 +6,7 @@ type Props ={
 }
 
 export default function PageTitle ({ children }: Props) {
-    return <TitleStyled className="text-center mt-4">{children}</TitleStyled>
+    return <TitleStyled className="text-center mt-4 p-3">{children}</TitleStyled>
 }
 
 const TitleStyled = styled.h1`

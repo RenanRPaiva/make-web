@@ -44,4 +44,12 @@ const ButtonStyled = styled(ButtonBootstrap)`
          border-color: #CB8D92 !important;
      }
     ` }
+    ${props => (props.variant ==='outline-danger') && `
+     color: #BD8085; 
+     border-color:  #BD8085  !important;
+     &:hover {
+         background-color: #CB8D92 !important;
+         border-color: #CB8D92 !important;
+     }`
+    }
 `

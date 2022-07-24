@@ -9,15 +9,23 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Provider } from 'react-redux';
 import store from './store/store';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+
+const payPalOptions = {
+  'client-id': "AV0QbPIMrrtq7A0coXrk4UY2ix5B9lDtEadqlLg0_UFlpzoS5S9nlBm4zQYLpI0sRW8FUOJHMwEoTqDg",
+  currency: "BRL"
+}
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <GlobalStyle />
-        <App />
-        <ToastContainer />
-      </BrowserRouter>
+      <PayPalScriptProvider options={payPalOptions}>
+        <BrowserRouter>
+          <GlobalStyle />
+          <App />
+          <ToastContainer />
+        </BrowserRouter>
+      </PayPalScriptProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

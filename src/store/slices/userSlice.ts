@@ -31,3 +31,4 @@ export default slice.reducer
 
 export const selectIsUserLoggedIn = (state: RootState) => !!state.user.user
 export const selectIsLoadingUser = (state: RootState) => state.user.loadingUser
+export const selectUser = ( state: RootState ) => state.user.user

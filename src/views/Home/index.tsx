@@ -17,8 +17,7 @@ export default function HomeView() {
                     <Title className="text-white text-center text-lg-start mt-auto mt-lg-0">Maquiagem e Penteado em um Click!</Title>
                     {isUserLoggedIn ? (
                         <>
-                            <Button to="/novo-pedido" variant="danger" size='lg' className="mb-2 mt-auto mt-lg-3">Novo Pedido</Button>
-                            <Button to="/meus-pedidos" variant="danger" size='lg' className="mb-2 mt-auto mt-lg-3">Meus Pedidos</Button>
+                            <Button to="/novo-pedido" variant="danger" size='lg' className="mb-2 mt-auto mt-lg-3">Novo Pedido</Button>                            
                         </>
                     ) : (
                         <>
