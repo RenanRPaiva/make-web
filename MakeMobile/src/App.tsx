@@ -1,6 +1,6 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {HomeView} from './views/Home';
 
 export default function App() {
-    return <Text>Make +</Text>;
+  return <HomeView />;
 }
