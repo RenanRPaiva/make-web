@@ -2,5 +2,5 @@ import React from 'react';
 import {Text} from 'react-native';
 
 export default function App() {
-    return <Text>Make+</Text>;
+    return <Text>Make +</Text>;
 }
