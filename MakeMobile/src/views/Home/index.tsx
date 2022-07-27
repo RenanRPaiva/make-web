@@ -2,7 +2,7 @@ import React from 'react';
 import {ImageBackground, SafeAreaView, StyleSheet, Text} from 'react-native';
 import bg from '../../assets/img/bg-make-mobile.jpg';
 import Logo from '../../assets/img/logo-make-white.svg';
-import {CustomText} from '../../components/CustomText';
+import {CustomButton} from '../../components/CustomButton';
 
 export function HomeView() {
   return (
@@ -13,7 +13,7 @@ export function HomeView() {
           <Text style={styles.marca}>Make+</Text>
         </SafeAreaView>
         <Text style={styles.title}>Faça login e escolha os pedidos!</Text>
-        <CustomText>Fazer login</CustomText>
+        <CustomButton size="lg">Fazer login</CustomButton>
       </SafeAreaView>
     </ImageBackground>
   );
