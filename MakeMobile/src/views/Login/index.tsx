@@ -5,6 +5,8 @@ import {CustomButton} from '../../components/CustomButton';
 import {FormField} from '../../components/FormField';
 import * as yup from 'yup';
 import {loginUser} from '../../services/loginUser';
+import Toast from 'react-native-toast-message';
+import {isNativeFirebaseAuthError} from '../../utils/isNativeFirebaseAuthError';
 
 type FormValues = {
   email: string;
@@ -29,7 +31,16 @@ export function LoginView() {
         const user = await loginUser(values);
         console.log('sucesso', user);
       } catch (error) {
-        console.log(error);
+        const errorMsg =
+          isNativeFirebaseAuthError(error) &&
+          (error.code === 'auth/user-not-found' ||
+            error.code === 'auth/wrong-password')
+            ? 'Login ou senha inválidos.'
+            : 'Falha ao fazer login. Tente novamente.';
+        Toast.show({
+          type: 'error',
+          text1: errorMsg,
+        });
       }
     },
   });
