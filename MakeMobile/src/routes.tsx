@@ -12,7 +12,16 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export function Routes() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#BD8085',
+        },
+        headerTintColor: '#FFF',
+        headerTitleStyle: {
+          fontFamily: 'Lato-Regular',
+        },
+      }}>
       <Stack.Screen
         name="Home"
         component={HomeView}
@@ -20,7 +29,13 @@ export function Routes() {
           headerShown: false,
         }}
       />
-      <Stack.Screen name="Login" component={LoginView} />
+      <Stack.Screen
+        name="Login"
+        component={LoginView}
+        options={{
+          title: 'Entrar no sistema',
+        }}
+      />
     </Stack.Navigator>
   );
 }
