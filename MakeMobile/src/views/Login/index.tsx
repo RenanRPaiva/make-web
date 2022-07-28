@@ -4,6 +4,7 @@ import {Container} from '../../components/Container';
 import {CustomButton} from '../../components/CustomButton';
 import {FormField} from '../../components/FormField';
 import * as yup from 'yup';
+import {loginUser} from '../../services/loginUser';
 
 type FormValues = {
   email: string;
@@ -24,7 +25,12 @@ export function LoginView() {
       password: yup.string().required('Informe a senha.'),
     }),
     onSubmit: async values => {
-      console.log('values', values);
+      try {
+        const user = await loginUser(values);
+        console.log('sucesso', user);
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
   const getFieldProps = (fieldName: keyof FormValues) => ({
