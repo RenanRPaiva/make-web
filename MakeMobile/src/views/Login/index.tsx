@@ -9,6 +9,8 @@ import Toast from 'react-native-toast-message';
 import {isNativeFirebaseAuthError} from '../../utils/isNativeFirebaseAuthError';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../routes';
+import {useDispatch} from 'react-redux';
+import {updateUser} from '../../store/slices/userSlice';
 
 type FormValues = {
   email: string;
@@ -18,6 +20,7 @@ type FormValues = {
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
 export function LoginView({navigation}: Props) {
+  const dispatch = useDispatch();
   const formik = useFormik<FormValues>({
     initialValues: {
       email: '',
@@ -33,7 +36,7 @@ export function LoginView({navigation}: Props) {
     onSubmit: async values => {
       try {
         const user = await loginUser(values);
-        console.log('sucesso', user);
+        dispatch(updateUser(user));
         navigation.navigate('Orders');
       } catch (error) {
         const errorMsg =
