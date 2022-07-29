@@ -6,14 +6,28 @@ import {faCircleCheck as farCircleCheck} from '@fortawesome/free-regular-svg-ico
 import {faCircleCheck as fasCircleCheck} from '@fortawesome/free-solid-svg-icons/faCircleCheck';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {AcceptedOrdersView} from '../AcceptedOrders';
 import {FinishedOrdersView} from '../FinishedOrders';
 import {OpenOrdersView} from '../OpenOrders';
+import {getOrders} from '../../services/getOrders';
+import {useSelector} from 'react-redux';
+import {selectUser} from '../../store/slices/userSlice';
 
 const Tab = createBottomTabNavigator();
 
 export function OrdersView() {
+  const user = useSelector(selectUser);
+  useEffect(() => {
+    const fetchOrders = async () => {
+      if (!user) {
+        return;
+      }
+      const orders = await getOrders(user.id);
+      console.log(orders);
+    };
+    fetchOrders();
+  }, [user]);
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
