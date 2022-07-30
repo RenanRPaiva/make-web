@@ -10,22 +10,20 @@ import React, {useEffect} from 'react';
 import {AcceptedOrdersView} from '../AcceptedOrders';
 import {FinishedOrdersView} from '../FinishedOrders';
 import {OpenOrdersView} from '../OpenOrders';
-import {getOrders} from '../../services/getOrders';
 import {useSelector} from 'react-redux';
 import {selectUser} from '../../store/slices/userSlice';
+import {loadOrders} from '../../store/slices/ordersSlice';
+import {useAppDispatch} from '../../store/store';
 
 const Tab = createBottomTabNavigator();
 
 export function OrdersView() {
   const user = useSelector(selectUser);
   const userId = user?.id || '';
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    const fetchOrders = async () => {
-      const orders = await getOrders(userId);
-      console.log(orders);
-    };
-    fetchOrders();
-  }, [userId]);
+    dispatch(loadOrders(userId));
+  }, [userId, dispatch]);
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
