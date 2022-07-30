@@ -20,5 +20,5 @@ export type Order = {
   friendlyId: string;
   makeValue: number;
   status: OrderStatus;
-  createdAt: Date;
+  createdAt: string;
 };

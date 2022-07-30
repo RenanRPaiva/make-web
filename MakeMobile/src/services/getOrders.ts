@@ -71,7 +71,7 @@ const docsToOrders = (
       atendimento,
       user,
       status,
-      createdAt,
+      createdAt: createdAt.toDate().toISOString(),
     });
   });
   return orders;
