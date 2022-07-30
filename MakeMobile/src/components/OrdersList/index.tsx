@@ -5,6 +5,7 @@ import {LoadingStatus} from '../../entities/LoadingStatus';
 import {Order} from '../../entities/Order';
 import {selectloadOrderInfo} from '../../store/slices/ordersSlice';
 import {Container} from '../Container';
+import {CustomAlert} from '../CustomAlert';
 import {CustomText} from '../CustomText';
 import {Loading} from '../Loading';
 
@@ -17,6 +18,13 @@ export function OrdersList({orders, noOrdersMessage}: Props) {
   const {status} = useSelector(selectloadOrderInfo);
   if (status === LoadingStatus.loading) {
     return <Loading />;
+  }
+  if (status === LoadingStatus.failed) {
+    return (
+      <Container padding>
+        <CustomAlert>Falha ao buscar pedidos.</CustomAlert>
+      </Container>
+    );
   }
   return (
     <Container>
