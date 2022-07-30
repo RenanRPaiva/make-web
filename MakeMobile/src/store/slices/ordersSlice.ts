@@ -1,7 +1,9 @@
 import {createAsyncThunk, createSlice, SerializedError} from '@reduxjs/toolkit';
 import {LoadingStatus} from '../../entities/LoadingStatus';
 import {Order} from '../../entities/Order';
+import {OrderStatus} from '../../entities/OrderStatus';
 import {getOrders} from '../../services/getOrders';
+import {RootState} from '../store';
 
 export const loadOrders = createAsyncThunk(
   'orders/loadorders',
@@ -44,3 +46,12 @@ const slice = createSlice({
 });
 
 export default slice.reducer;
+
+export const selectOpenOrders = (state: RootState) =>
+  state.orders.orders.filter(order => order.status === OrderStatus.CREATED);
+
+export const selectAcceptedOrders = (state: RootState) =>
+  state.orders.orders.filter(order => order.status === OrderStatus.ACCEPTED);
+
+export const selectFinishedOrders = (state: RootState) =>
+  state.orders.orders.filter(order => order.status === OrderStatus.FINISHED);

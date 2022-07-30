@@ -1,6 +1,14 @@
 import React from 'react';
-import {CustomText} from '../../components/CustomText';
+import {useSelector} from 'react-redux';
+import {OrdersList} from '../../components/OrdersList';
+import {selectFinishedOrders} from '../../store/slices/ordersSlice';
 
 export function FinishedOrdersView() {
-  return <CustomText>Finalizados</CustomText>;
+  const finishedOrders = useSelector(selectFinishedOrders);
+  return (
+    <OrdersList
+      orders={finishedOrders}
+      noOrdersMessage="Nenhum pedido finalizado encontrado."
+    />
+  );
 }

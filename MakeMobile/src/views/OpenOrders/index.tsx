@@ -1,6 +1,14 @@
 import React from 'react';
-import {CustomText} from '../../components/CustomText';
+import {useSelector} from 'react-redux';
+import {OrdersList} from '../../components/OrdersList';
+import {selectOpenOrders} from '../../store/slices/ordersSlice';
 
 export function OpenOrdersView() {
-  return <CustomText>Disponíveis</CustomText>;
+  const openOrders = useSelector(selectOpenOrders);
+  return (
+    <OrdersList
+      orders={openOrders}
+      noOrdersMessage="Nenhum pedido disponivel encontrado."
+    />
+  );
 }
