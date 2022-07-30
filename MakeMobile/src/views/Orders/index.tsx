@@ -12,12 +12,13 @@ import {FinishedOrdersView} from '../FinishedOrders';
 import {OpenOrdersView} from '../OpenOrders';
 import {useSelector} from 'react-redux';
 import {selectUser} from '../../store/slices/userSlice';
-import {loadOrders} from '../../store/slices/ordersSlice';
+import {loadOrders, selectAcceptedOrders} from '../../store/slices/ordersSlice';
 import {useAppDispatch} from '../../store/store';
 
 const Tab = createBottomTabNavigator();
 
 export function OrdersView() {
+  const acceptedOrders = useSelector(selectAcceptedOrders);
   const user = useSelector(selectUser);
   const userId = user?.id || '';
   const dispatch = useAppDispatch();
@@ -53,6 +54,11 @@ export function OrdersView() {
           fontFamily: 'Lato-Regular',
           fontSize: 12,
         },
+        tabBarBadgeStyle: {
+          backgroundColor: '#FF3B30',
+          fontSize: 14,
+          fontFamily: 'Lato-Regular',
+        },
       })}>
       <Tab.Screen
         name="OpenOrders"
@@ -66,6 +72,8 @@ export function OrdersView() {
         component={AcceptedOrdersView}
         options={{
           title: 'Em andamento',
+          tabBarBadge:
+            acceptedOrders.length > 0 ? acceptedOrders.length : undefined,
         }}
       />
       <Tab.Screen
