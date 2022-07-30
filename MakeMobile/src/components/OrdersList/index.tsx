@@ -8,6 +8,7 @@ import {Container} from '../Container';
 import {CustomAlert} from '../CustomAlert';
 import {CustomText} from '../CustomText';
 import {Loading} from '../Loading';
+import {OrderCard} from '../OrderCard';
 
 type Props = {
   orders: Order[];
@@ -27,11 +28,11 @@ export function OrdersList({orders, noOrdersMessage}: Props) {
     );
   }
   return (
-    <Container>
+    <Container padding>
       {orders.length > 0 ? (
         <>
           {orders.map(order => (
-            <CustomText key={order.id}>{order.friendlyId}</CustomText>
+            <OrderCard key={order.id} order={order} />
           ))}
         </>
       ) : (
