@@ -21,7 +21,9 @@ export default function EstimateFinish () {
             await createOrder({
                 estimate: currentEstimate,
                 gatewayId: details.id,
-                userId: user?.id
+                userId: user?.id,
+                name: user?.name,
+                phone: user?.phone
             })
             dispatch(clearCurrentEstimate())
             navigate('/novo-pedido/sucesso')

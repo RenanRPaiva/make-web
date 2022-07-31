@@ -6,9 +6,11 @@ type NewOrderInput = {
     estimate: Estimate
     gatewayId: string
     userId: string
+    name: string
+    phone: string
 }
 
-export const createOrder = async ({ estimate, gatewayId, userId }: NewOrderInput): Promise<void> => {
+export const createOrder = async ({ estimate, gatewayId, userId, name, phone }: NewOrderInput): Promise<void> => {
     const friendlyId = new Date().getTime().toString(36).toUpperCase()
     const makeValue = parseFloat((estimate.value).toFixed(2))
     const { id: estimateId, ...estimateData } = estimate
@@ -17,6 +19,8 @@ export const createOrder = async ({ estimate, gatewayId, userId }: NewOrderInput
         estimateId,
         gatewayId,
         user: userId,
+        name: name,
+        phone: phone,
         friendlyId,
         makeValue,
         status: 'CREATED',
