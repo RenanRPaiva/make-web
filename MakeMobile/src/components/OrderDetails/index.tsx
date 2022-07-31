@@ -24,8 +24,8 @@ export function OrderDetails({order, showService = false}: Props) {
       </SmallTextStyled>
       {showService && (
         <>
-          <SmallTextStyled bold>Serviços Contratados:</SmallTextStyled>
-          <SmallTextStyled>
+          <SmallTextStyled bold>
+            Serviços Contratados:{' '}
             <SmallTextStyled>
               {order.maquiagem !== 0 ? `Maquiagem: ${order.maquiagem}  ` : ''}
               {order.penteado !== 0 ? `Penteado: ${order.penteado}  ` : ''}
@@ -42,9 +42,25 @@ export function OrderDetails({order, showService = false}: Props) {
                 ? `Atendimento em festa: ${order.atendimento}  `
                 : ''}
             </SmallTextStyled>
-            <SmallTextStyled bold>Data:</SmallTextStyled>
-            <SmallTextStyled>{order.date}</SmallTextStyled>
           </SmallTextStyled>
+          <>
+            <SmallTextStyled bold>
+              Data e hora que precisa estar pronta:
+            </SmallTextStyled>
+          </>
+          <SmallTextStyled>
+            <SmallTextStyled bold>
+              Data:{'  '} <SmallTextStyled>{order.date} </SmallTextStyled>
+            </SmallTextStyled>
+            <SmallTextStyled bold>
+              Hora: <SmallTextStyled>{order.hours} </SmallTextStyled>
+            </SmallTextStyled>
+          </SmallTextStyled>
+          <LinhaWrapStyled>
+            <SmallTextStyled bold>
+              Nome: <SmallTextStyled>{order.user}</SmallTextStyled>
+            </SmallTextStyled>
+          </LinhaWrapStyled>
         </>
       )}
     </>
@@ -59,4 +75,11 @@ const IdStyled = styled(CustomText)`
 const SmallTextStyled = styled(CustomText)`
   font-size: 12px;
   margin-bottom: 3px;
+`;
+
+const LinhaWrapStyled = styled.View`
+  border-top-color: #e1e1e1;
+  border-top-width: 1px;
+  margin-top: 5px;
+  margin-top: 5px;
 `;
