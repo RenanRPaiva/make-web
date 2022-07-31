@@ -1,3 +1,4 @@
+import React from "react";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import styled from "styled-components";
 import { OrderResponseBody } from "@paypal/paypal-js"

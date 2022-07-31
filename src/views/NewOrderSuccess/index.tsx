@@ -1,3 +1,4 @@
+import React from "react";
 import { Col, Container, Nav, Row } from "react-bootstrap";
 import Layout from "../../components/Layout";
 import PageTitle from "../../components/PageTitle";

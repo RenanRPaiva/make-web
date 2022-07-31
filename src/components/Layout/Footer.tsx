@@ -1,3 +1,4 @@
+import React from "react";
 import { faFacebookSquare, faInstagram, faWhatsappSquare } from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Container, Nav } from "react-bootstrap"
