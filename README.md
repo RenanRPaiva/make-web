@@ -157,7 +157,7 @@ O banco de dados já conta com os seguintes usuários de demonstração:
 
 **Senha:** 12345678
 
-### Parceiro
+### Maquiadora
 
 **E-mail:** maquiadora@maquiadora.com
 
